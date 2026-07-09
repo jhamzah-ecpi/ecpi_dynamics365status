@@ -5,6 +5,15 @@
     "overallHealth": "on-track"
   },
   "vision": "One source of truth for communication — from inquiry to alumni. Every team works from the same student record, every decision is informed by the same data, and every interaction is part of one connected communication strategy.",
+  "roi": {
+    "onboardedLastYear": 0,
+    "items": []
+  },
+  "platform": {
+    "live": [],
+    "inProgress": [],
+    "planned": []
+  },
   "decisions": [
     {
       "title": "Employer Partnership Form",

@@ -810,6 +810,12 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     text-transform: uppercase; letter-spacing: var(--tracking-wide);
     color: var(--fg-3);
   }
+  .adoption-go-live {
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--fg-2);
+    white-space: nowrap;
+  }
 
   /* Body — three columns */
   .dept-body {
@@ -1285,9 +1291,103 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   .platform-col .platform-head .dot { width: 7px; height: 7px; border-radius: 50%; }
   .platform-col.live .dot     { background: var(--success-500); }
   .platform-col.progress .dot { background: var(--warning-500); }
-  .platform-col.planned .dot  { background: var(--blue-300); }
+  .platform-col.planned .dot  { background: var(--error-500); }
   .platform-col .items { font-size: var(--fs-sm); color: var(--fg-2); line-height: 1.5; }
   .platform-col .items span + span::before { content: " · "; color: var(--fg-4); }
+
+  /* ----- ROI section ----- */
+  .roi-band {
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-10);
+    overflow: hidden;
+  }
+  .roi-head {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-4);
+    flex-wrap: wrap;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--neutral-50);
+  }
+  .roi-title {
+    font-family: var(--font-display); font-size: var(--fs-2xl);
+    letter-spacing: var(--tracking-snug); color: var(--blue-900); margin: 0;
+  }
+  .roi-sub { color: var(--fg-3); font-size: var(--fs-sm); margin-top: 4px; }
+  .roi-kpis { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+  .roi-kpi {
+    background: white; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+    padding: 8px 12px; min-width: 120px;
+  }
+  .roi-kpi .k { font-size: var(--fs-xs); color: var(--fg-3); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-weight: 700; }
+  .roi-kpi .v { font-family: var(--font-display); color: var(--fg-1); font-size: var(--fs-xl); font-weight: 800; }
+  .roi-list { padding: var(--space-5) var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .roi-item {
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--blue-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    background: white;
+  }
+  .roi-item .top { display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; margin-bottom: 6px; }
+  .roi-item .feature { font-weight: 800; font-size: var(--fs-lg); color: var(--blue-900); }
+  .roi-item .meta { font-size: var(--fs-xs); color: var(--fg-3); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-weight: 700; }
+  .roi-item .impact { color: var(--fg-2); font-size: var(--fs-sm); line-height: 1.5; }
+  .roi-empty { padding: var(--space-6); color: var(--fg-3); font-style: italic; }
+  .tag-list {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+  }
+  .tag-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue-30);
+    border: 1px solid var(--blue-300);
+    color: var(--blue-700);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+  .tag-pill button {
+    border: 0; background: transparent; color: inherit; cursor: pointer;
+    font-size: 12px; line-height: 1; padding: 0;
+  }
+  .tag-editor {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .tag-editor-row {
+    display: flex; gap: 8px;
+  }
+  .tag-editor-row input {
+    flex: 1;
+  }
+
+  /* ----- Platform section (separate from journeys) ----- */
+  .platform-band {
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-10);
+    overflow: hidden;
+  }
+  .platform-band .head {
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--neutral-50);
+  }
+  .platform-band .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    color: var(--blue-900);
+  }
+  .platform-band .sub { color: var(--fg-3); font-size: var(--fs-sm); margin-top: 4px; }
+  .platform-band .platform-strip { border-top: 0; }
 
   /* Responsive: stack journey rows as cards */
   @media (max-width: 860px) {
@@ -1397,7 +1497,7 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     </div>
 
     <h1>Operational status &amp; the <span class="accent-word">road ahead</span>.</h1>
-    <p class="hero-sub">A live view of what's working in Dynamics 365 today, what's in flight, and where each team is heading next. Updated as needed from <code>crm-d365-status.json</code>.</p>
+    <p class="hero-sub">A live view of what's working in Dynamics 365 today, what's in flight, and where each team is heading next.</p>
 
     <div class="hero-meta" id="hero-meta">
       <!-- React renders meta here -->
@@ -1413,24 +1513,31 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   <!-- Decisions needed from leadership -->
   <div class="decisions-band" id="decisions-band"></div>
 
+  <!-- ROI and impact -->
+  <div class="roi-band" id="roi-band"></div>
+
   <!-- Section -->
   <div class="section-header">
     <h2>Status by department</h2>
     <div class="legend">
-      <span class="item"><span class="dot" style="background: var(--success-500)"></span> Live</span>
-      <span class="item"><span class="dot" style="background: var(--warning-500)"></span> In progress</span>
-      <span class="item"><span class="dot" style="background: var(--blue-300)"></span> Planned</span>
+      <span class="item"><span class="dot" style="background: var(--success-500)"></span> High</span>
+      <span class="item"><span class="dot" style="background: var(--warning-500)"></span> Medium</span>
+      <span class="item"><span class="dot" style="background: var(--error-500)"></span> Low</span>
+      <span class="item"><span class="dot" style="background: var(--neutral-400)"></span> Not started</span>
     </div>
   </div>
 
   <div class="dept-grid" id="dept-grid"></div>
+
+  <!-- Platform updates (separate from journeys) -->
+  <div class="platform-band" id="platform-band"></div>
 
   <!-- Overall vision — closer at the bottom -->
   <div class="vision-closer" id="vision-closer"></div>
 
   <div class="page-foot">
     <div>Maintained by <strong>the CRM team</strong> · ECPI University</div>
-    <div>Page always reads from <strong>crm-d365-status.json</strong> in this same folder</div>
+    <div id="mode-footnote">Hosted mode reads <strong>crm-d365-status.json</strong> · local file mode uses browser preview data</div>
   </div>
 </div>
 
@@ -1525,6 +1632,15 @@ const SEED = {
   },
   vision:
     "One source of truth — from inquiry to alumni. Every team works from the same student record, every decision is informed by the same data, and every interaction is part of one connected journey.",
+  roi: {
+    onboardedLastYear: 0,
+    items: [],
+  },
+  platform: {
+    live: [],
+    inProgress: [],
+    planned: [],
+  },
   decisions: [
     {
       title: "Approve bidirectional Canvas ↔ CRM sync scope and budget",
@@ -1767,6 +1883,11 @@ const SEED = {
    STATE / STORAGE
    =========================================================== */
 const DEFAULT_PUBLISHED_STATE_URL = "crm-d365-status.json";
+const LOCAL_PREVIEW_KEY = "crm-d365-local-preview-v1";
+const IS_LOCAL_PREVIEW =
+  window.location.protocol === "file:" ||
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
 
 let ACTIVE_PUBLISHED_STATE_URL = DEFAULT_PUBLISHED_STATE_URL;
 let ACTIVE_PUBLISHED_STATE_URL_FROM = "fixed-file";
@@ -1782,18 +1903,99 @@ async function loadPublishedState() {
 }
 async function loadState() {
   STATE_LOAD_ERROR = null;
+  if (IS_LOCAL_PREVIEW) {
+    ACTIVE_PUBLISHED_STATE_URL = "local preview draft";
+    ACTIVE_PUBLISHED_STATE_URL_FROM = "local-preview";
+    try {
+      const raw = localStorage.getItem(LOCAL_PREVIEW_KEY);
+      if (!raw) return clone(SEED);
+      return mergeSeed(JSON.parse(raw));
+    } catch (e) {
+      console.warn("Could not load local preview draft, using seed.", e);
+      return clone(SEED);
+    }
+  }
   return loadPublishedState();
 }
+
+function saveLocalPreviewState(s) {
+  if (!IS_LOCAL_PREVIEW) return;
+  try {
+    localStorage.setItem(LOCAL_PREVIEW_KEY, JSON.stringify(s));
+  } catch (e) {
+    console.warn("Could not persist local preview draft.", e);
+  }
+}
+
+function clearLocalPreviewState() {
+  if (!IS_LOCAL_PREVIEW) return;
+  try { localStorage.removeItem(LOCAL_PREVIEW_KEY); } catch (e) {}
+}
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
+function inferRolloutStatusFromDept(d) {
+  if (d?.rolloutStatus === "live" || d?.rolloutStatus === "pending" || d?.rolloutStatus === "not-started") {
+    return d.rolloutStatus;
+  }
+  if (d?.adoption === "high") return "live";
+  if (d?.adoption === "not-started") return "not-started";
+  return "pending";
+}
+function normalizeTagArray(tags) {
+  if (!Array.isArray(tags)) return [];
+  const out = [];
+  tags.forEach((t) => {
+    const clean = String(t || "").trim();
+    if (clean && !out.includes(clean)) out.push(clean);
+  });
+  return out;
+}
+function inferImpactAudience(item) {
+  const direct = String(item?.impactAudience || "").toLowerCase();
+  if (direct === "students" || direct === "staff" || direct === "both") return direct;
+  const legacy = normalizeTagArray(item?.tags || (item?.audienceType ? [item.audienceType] : []))
+    .map((t) => t.toLowerCase());
+  const hasStudent = legacy.some((t) => t.includes("student"));
+  const hasStaff = legacy.some((t) => t.includes("staff"));
+  if (hasStudent && hasStaff) return "both";
+  if (hasStudent) return "students";
+  if (hasStaff) return "staff";
+  return "both";
+}
 function mergeState(base, patch) {
   const out = clone(base);
   if (patch?.meta) Object.assign(out.meta, patch.meta);
   if (typeof patch?.vision === "string") out.vision = patch.vision;
+  if (patch?.roi && typeof patch.roi === "object") {
+    out.roi = {
+      ...base.roi,
+      ...patch.roi,
+      onboardedLastYear: Number.isFinite(Number(patch.roi.onboardedLastYear))
+        ? Number(patch.roi.onboardedLastYear)
+        : base.roi.onboardedLastYear,
+      items: Array.isArray(patch.roi.items)
+        ? patch.roi.items.map((item) => ({
+            ...item,
+            impactAudience: inferImpactAudience(item),
+            tags: normalizeTagArray(item?.tags || (item?.audienceType ? [item.audienceType] : [])),
+          }))
+        : base.roi.items,
+    };
+  }
+  if (patch?.platform && typeof patch.platform === "object") {
+    out.platform = {
+      ...base.platform,
+      ...patch.platform,
+      live: Array.isArray(patch.platform.live) ? patch.platform.live : base.platform.live,
+      inProgress: Array.isArray(patch.platform.inProgress) ? patch.platform.inProgress : base.platform.inProgress,
+      planned: Array.isArray(patch.platform.planned) ? patch.platform.planned : base.platform.planned,
+    };
+  }
   if (Array.isArray(patch?.decisions)) out.decisions = patch.decisions;
   if (Array.isArray(patch?.departments) && patch.departments.length === base.departments.length) {
     out.departments = patch.departments.map((d, i) => ({
       ...base.departments[i],
       ...d,
+      rolloutStatus: inferRolloutStatusFromDept(d),
       live: Array.isArray(d.live) ? d.live : base.departments[i].live,
       inProgress: Array.isArray(d.inProgress) ? d.inProgress : base.departments[i].inProgress,
       planned: Array.isArray(d.planned) ? d.planned : base.departments[i].planned,
@@ -1815,6 +2017,16 @@ function fmtDate(iso) {
   const d = new Date(iso + "T12:00:00");
   if (isNaN(d)) return iso;
   return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+function deptGoLiveDate(d) {
+  const direct = (d?.goLiveDate || "").slice(0, 10);
+  if (direct) return direct;
+  if (!Array.isArray(d?.journeys)) return "";
+  const dates = d.journeys
+    .map((j) => (j?.goLiveDate || "").slice(0, 10))
+    .filter((v) => /^\d{4}-\d{2}-\d{2}$/.test(v))
+    .sort();
+  return dates[0] || "";
 }
 function el(tag, attrs = {}, ...children) {
   const e = document.createElement(tag);
@@ -1863,7 +2075,9 @@ function render() {
   renderHeroMeta();
   renderAdoptionStrip();
   renderDecisions();
+  renderROI();
   renderDepartments();
+  renderPlatformUpdates();
   renderVisionCloser();
   if (window.lucide) lucide.createIcons();
 }
@@ -1892,13 +2106,6 @@ function renderHeroMeta() {
   const items = [
     { i: "calendar", label: "Last updated", val: fmtDate(STATE.meta.lastUpdated) },
     { i: "user", label: "Maintained by", val: STATE.meta.owner || "—" },
-    {
-      i: "link",
-      label: "Data source",
-      val: STATE_LOAD_ERROR
-        ? `${DEFAULT_PUBLISHED_STATE_URL} failed to load (showing fallback seed)`
-        : `${DEFAULT_PUBLISHED_STATE_URL} loaded`,
-    },
   ];
   items.forEach(({ i, label, val }) => {
     c.appendChild(
@@ -2005,6 +2212,67 @@ function renderDecisions() {
   c.appendChild(grid);
 }
 
+function renderROI() {
+  const c = document.getElementById("roi-band");
+  if (!c) return;
+  c.innerHTML = "";
+
+  const roi = STATE.roi || { onboardedLastYear: 0, items: [] };
+  const items = Array.isArray(roi.items) ? roi.items : [];
+  const studentImpact = items.filter(i => {
+    const v = inferImpactAudience(i);
+    return v === "students" || v === "both";
+  }).length;
+  const staffImpact = items.filter(i => {
+    const v = inferImpactAudience(i);
+    return v === "staff" || v === "both";
+  }).length;
+  const departmentsLive = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "live").length;
+  const departmentsPending = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "pending").length;
+
+  c.appendChild(
+    el("div", { class: "roi-head" },
+      el("div", {},
+        el("h2", { class: "roi-title" }, "ROI & Delivered Impact"),
+        el("div", { class: "roi-sub" }, "Executive view of delivered value, go-live dates, and adoption progress year-over-year.")
+      ),
+      el("div", { class: "roi-kpis" },
+        roiKpi("Student impact", studentImpact),
+        roiKpi("Staff impact", staffImpact),
+        roiKpi("Departments Live", departmentsLive),
+        roiKpi("Departments Pending", departmentsPending)
+      )
+    )
+  );
+
+  const list = el("div", { class: "roi-list" });
+  if (!items.length) {
+    list.appendChild(el("div", { class: "roi-empty" }, "No ROI entries yet. Add them via Update status → ROI & impact."));
+  } else {
+    items.forEach((r) => {
+      list.appendChild(
+        el("div", { class: "roi-item" },
+          el("div", { class: "top" },
+            el("div", { class: "feature" }, r.feature || "Untitled feature"),
+            el("div", { class: "meta" },
+              `${r.department || "Department TBD"} · ${inferImpactAudience(r).toUpperCase()} · Go-live: ${fmtDate((r.goLiveDate || "").slice(0, 10))}`
+            )
+          ),
+          el("div", { class: "impact" }, r.impact || "No impact summary provided yet.")
+        )
+      );
+    });
+  }
+  c.appendChild(list);
+}
+
+function roiKpi(label, value) {
+  return el("div", { class: "roi-kpi" },
+    el("div", { class: "k" }, label),
+    el("div", { class: "v" }, String(value))
+  );
+}
+
 function renderVisionCloser() {
   const c = document.getElementById("vision-closer");
   c.innerHTML = "";
@@ -2033,6 +2301,40 @@ function renderDepartments() {
   });
 }
 
+function renderPlatformUpdates() {
+  const c = document.getElementById("platform-band");
+  if (!c) return;
+  c.innerHTML = "";
+
+  const marketing = STATE.departments.find(d => d.id === "marketing-journeys") || {};
+  let platform = STATE.platform || { live: [], inProgress: [], planned: [] };
+  const isEmpty =
+    (!platform.live || !platform.live.length) &&
+    (!platform.inProgress || !platform.inProgress.length) &&
+    (!platform.planned || !platform.planned.length);
+  if (isEmpty) {
+    platform = {
+      live: marketing.live || [],
+      inProgress: marketing.inProgress || [],
+      planned: marketing.planned || [],
+    };
+  }
+
+  c.appendChild(
+    el("div", { class: "head" },
+      el("h3", { class: "title" }, "Platform updates"),
+      el("div", { class: "sub" }, "Core CRM/communications platform work tracked separately from journey operations.")
+    )
+  );
+  c.appendChild(
+    el("div", { class: "platform-strip" },
+      platformCol("live", "Platform — live", platform.live || []),
+      platformCol("progress", "In progress", platform.inProgress || []),
+      platformCol("planned", "Planned", platform.planned || [])
+    )
+  );
+}
+
 function deptCardWide(d) {
   const bars = ADOPTION_BARS[d.adoption] ?? 0;
   const journeys = Array.isArray(d.journeys) ? d.journeys : [];
@@ -2049,7 +2351,7 @@ function deptCardWide(d) {
   // Build table
   const tbody = el("tbody");
   if (!sorted.length) {
-    tbody.appendChild(el("tr", {}, el("td", { colspan: 5, style: "padding: 24px; color: var(--fg-3); text-align: center;" },
+    tbody.appendChild(el("tr", {}, el("td", { colspan: 7, style: "padding: 24px; color: var(--fg-3); text-align: center;" },
       "No journeys configured yet — add some via Update status.")));
   }
   sorted.forEach(j => {
@@ -2076,6 +2378,7 @@ function deptCardWide(d) {
             el("span", {}, j.cadence || "—")
           )
         ),
+        el("td", { "data-label": "Go-live" }, (j.goLiveDate || "").slice(0, 10) || "—"),
         el("td", { "data-label": "Status" },
           el("span", { class: `status-tag ${status}` }, statusLabel)
         )
@@ -2092,7 +2395,8 @@ function deptCardWide(d) {
         el("span", { class: "adoption-meter" },
           [0,1,2].map(i => el("span", { class: "bar" + (i < bars ? " on" : "") }))
         ),
-        el("span", { class: "adoption-label", style: "color: var(--fg-1)" }, ADOPTION_LABELS[d.adoption])
+        el("span", { class: "adoption-label", style: "color: var(--fg-1)" }, ADOPTION_LABELS[d.adoption]),
+        el("span", { class: "adoption-go-live" }, `Go-live: ${deptGoLiveDate(d) ? fmtDate(deptGoLiveDate(d)) : "TBD"}`)
       )
     ),
     el("div", { class: "journeys-section" },
@@ -2112,16 +2416,12 @@ function deptCardWide(d) {
             el("th", {}, "Channel"),
             el("th", {}, "Audience"),
             el("th", {}, "Send cadence"),
+            el("th", {}, "Go-live"),
             el("th", {}, "Status")
           )
         ),
         tbody
       )
-    ),
-    el("div", { class: "platform-strip" },
-      platformCol("live", "Platform — live", d.live),
-      platformCol("progress", "In progress", d.inProgress),
-      platformCol("planned", "Planned", d.planned)
     ),
     d.issues && d.issues.length
       ? el("div", { class: "issues" },
@@ -2170,7 +2470,8 @@ function deptCard(d) {
         el("span", { class: "adoption-meter" },
           [0,1,2].map(i => el("span", { class: "bar" + (i < bars ? " on" : "") }))
         ),
-        el("span", { class: "adoption-label", style: "color: var(--fg-1)" }, ADOPTION_LABELS[d.adoption])
+        el("span", { class: "adoption-label", style: "color: var(--fg-1)" }, ADOPTION_LABELS[d.adoption]),
+        el("span", { class: "adoption-go-live" }, `Go-live: ${deptGoLiveDate(d) ? fmtDate(deptGoLiveDate(d)) : "TBD"}`)
       )
     ),
     el("div", { class: "dept-body" },
@@ -2259,6 +2560,7 @@ function renderDrawer() {
       oninput: (e) => DRAFT.meta.owner = e.target.value }))
   );
   const publishedSourceLabel =
+    ACTIVE_PUBLISHED_STATE_URL_FROM === "local-preview" ? "browser local preview" :
     ACTIVE_PUBLISHED_STATE_URL_FROM === "fixed-file" ? "same-folder JSON file" : "seed fallback";
   metaCard.appendChild(
     field(
@@ -2309,6 +2611,23 @@ function renderDrawer() {
   });
   sec3.appendChild(deptList);
   body.appendChild(sec3);
+
+  // ============================================================
+  // SECTION 4 — ROI and impact
+  // ============================================================
+  const sec4 = el("div", { class: "drawer-section" });
+  const roiCount = Array.isArray(DRAFT.roi?.items) ? DRAFT.roi.items.length : 0;
+  sec4.appendChild(sectionHead("4", "ROI and impact", `${roiCount} tracked`));
+  sec4.appendChild(roiEditor());
+  body.appendChild(sec4);
+
+  // ============================================================
+  // SECTION 5 — Platform updates
+  // ============================================================
+  const sec5 = el("div", { class: "drawer-section" });
+  sec5.appendChild(sectionHead("5", "Platform updates", "Separate from journeys"));
+  sec5.appendChild(platformEditor());
+  body.appendChild(sec5);
 }
 
 function sectionHead(num, title, countText) {
@@ -2406,6 +2725,126 @@ function decisionEditRow(dec, idx, rerender) {
   return row;
 }
 
+function roiEditor() {
+  DRAFT.roi = DRAFT.roi || { onboardedLastYear: 0, items: [] };
+  if (!Array.isArray(DRAFT.roi.items)) DRAFT.roi.items = [];
+
+  const wrap = el("div", { class: "form-card" });
+  wrap.appendChild(el("div", { class: "hint" },
+    "Track delivered impact with go-live dates so leadership can see year-over-year value."));
+
+  const list = el("div", { class: "decisions-editor" });
+  function rerender() {
+    list.innerHTML = "";
+    DRAFT.roi.items.forEach((item, idx) => list.appendChild(roiEditRow(item, idx, rerender)));
+    if (window.lucide) lucide.createIcons();
+  }
+  rerender();
+  wrap.appendChild(list);
+
+  wrap.appendChild(
+    el("button", { class: "btn-add-journey",
+      onclick: () => {
+      DRAFT.roi.items.push({
+          feature: "",
+          department: "",
+          impactAudience: "both",
+          goLiveDate: "",
+          impact: "",
+        });
+        rerender();
+      } },
+      el("span", { html: `<i data-lucide="plus"></i>` }),
+      "Add ROI item"
+    )
+  );
+  return wrap;
+}
+
+function platformEditor() {
+  DRAFT.platform = DRAFT.platform || { live: [], inProgress: [], planned: [] };
+  const marketing = DRAFT.departments.find(d => d.id === "marketing-journeys") || {};
+  if (!DRAFT.platform.live?.length && !DRAFT.platform.inProgress?.length && !DRAFT.platform.planned?.length) {
+    DRAFT.platform.live = Array.isArray(marketing.live) ? [...marketing.live] : [];
+    DRAFT.platform.inProgress = Array.isArray(marketing.inProgress) ? [...marketing.inProgress] : [];
+    DRAFT.platform.planned = Array.isArray(marketing.planned) ? [...marketing.planned] : [];
+  }
+  const wrap = el("div", { class: "form-card" });
+  wrap.appendChild(el("div", { class: "hint" },
+    "Manage platform-level updates independently from Marketing/Journeys."));
+
+  wrap.appendChild(listField("Platform — live", DRAFT.platform.live || [],
+    v => DRAFT.platform.live = v,
+    "Platform capabilities shipped and active."));
+  wrap.appendChild(listField("Platform — in progress", DRAFT.platform.inProgress || [],
+    v => DRAFT.platform.inProgress = v,
+    "Platform work currently underway."));
+  wrap.appendChild(listField("Platform — planned", DRAFT.platform.planned || [],
+    v => DRAFT.platform.planned = v,
+    "Platform roadmap items."));
+  return wrap;
+}
+
+function roiEditRow(item, idx, rerender) {
+  DRAFT.roi.items[idx].impactAudience = inferImpactAudience(DRAFT.roi.items[idx]);
+  const row = el("div", { class: "decision-edit-row" });
+  row.appendChild(
+    el("input", {
+      type: "text",
+      placeholder: "Feature/project name",
+      value: item.feature || "",
+      oninput: (e) => DRAFT.roi.items[idx].feature = e.target.value
+    })
+  );
+  row.appendChild(
+    el("input", {
+      type: "text",
+      placeholder: "Department(s)",
+      value: item.department || "",
+      oninput: (e) => DRAFT.roi.items[idx].department = e.target.value
+    })
+  );
+
+  const twoCol = el("div", { class: "two-col" });
+  twoCol.appendChild(
+    el("input", {
+      type: "date",
+      value: (item.goLiveDate || "").slice(0, 10),
+      oninput: (e) => DRAFT.roi.items[idx].goLiveDate = e.target.value
+    })
+  );
+  twoCol.appendChild(
+    field("Impact audience",
+      el("select", {
+        onchange: (e) => DRAFT.roi.items[idx].impactAudience = e.target.value
+      },
+      ["students", "staff", "both"].map((v) =>
+        el("option", { value: v, ...(DRAFT.roi.items[idx].impactAudience === v ? { selected: "selected" } : {}) },
+          v === "students" ? "Students" : v === "staff" ? "Staff" : "Both")
+      )),
+      "Used for Student impact and Staff impact KPI totals. 'Both' counts in both tiles.")
+  );
+  row.appendChild(twoCol);
+
+  row.appendChild(
+    el("textarea", {
+      placeholder: "Impact statement — measurable organizational value",
+      oninput: (e) => DRAFT.roi.items[idx].impact = e.target.value
+    }, item.impact || "")
+  );
+
+  row.appendChild(
+    el("div", { class: "row-foot" },
+      el("button", { class: "remove-btn",
+        onclick: () => { DRAFT.roi.items.splice(idx, 1); rerender(); } },
+        el("span", { html: `<i data-lucide="trash-2"></i>` }),
+        "Remove"
+      )
+    )
+  );
+  return row;
+}
+
 function deptEditor(d, idx) {
   const det = el("details", { class: "dept-edit" });
   const bars = ADOPTION_BARS[d.adoption] ?? 0;
@@ -2444,20 +2883,37 @@ function deptEditor(d, idx) {
         if (status) status.textContent = ADOPTION_LABELS[v];
       })));
 
-  // Marketing gets a structured journey editor + slimmer "platform" lists
+  inner.appendChild(field("Rollout status",
+    el("select", {
+      onchange: (e) => DRAFT.departments[idx].rolloutStatus = e.target.value
+    },
+    [
+      ["live", "Live"],
+      ["pending", "Pending"],
+      ["not-started", "Not started"],
+    ].map(([value, label]) =>
+      el("option",
+        { value, ...(inferRolloutStatusFromDept(d) === value ? { selected: "selected" } : {}) },
+        label
+      )
+    )),
+    "Used for KPI totals in ROI & Delivered impact."));
+
+  inner.appendChild(field("Department go-live date",
+    el("input", {
+      type: "date",
+      value: (d.goLiveDate || "").slice(0, 10),
+      oninput: (e) => DRAFT.departments[idx].goLiveDate = e.target.value
+    }),
+    "Shows beside adoption status on each department card."));
+
+  // Marketing gets journeys only; platform updates are managed in dedicated Section 5.
   if (d.id === "marketing-journeys") {
     inner.appendChild(journeysEditor(idx));
-    inner.appendChild(listField("Platform — live", d.live,
-      v => DRAFT.departments[idx].live = v,
-      "Platform capabilities shipped (one per line) — e.g. UTM capture, SMS templates."));
-    inner.appendChild(listField("Platform — in progress", d.inProgress,
-      v => DRAFT.departments[idx].inProgress = v,
-      "Platform work being built now."));
-    inner.appendChild(listField("Platform — planned", d.planned,
-      v => DRAFT.departments[idx].planned = v,
-      "Platform work on the roadmap."));
+    inner.appendChild(el("div", { class: "hint" },
+      "Platform updates are now configured in Section 5: Platform updates."));
   } else {
-    inner.appendChild(listField("Live features", d.live,
+    inner.appendChild(listField("Live", d.live,
       v => DRAFT.departments[idx].live = v,
       "One feature per line — shipped and in use today."));
     inner.appendChild(listField("In progress", d.inProgress,
@@ -2485,7 +2941,7 @@ function journeysEditor(deptIdx) {
   wrap.appendChild(el("label", { style: "font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--fg-2);" },
     "Journeys"));
   wrap.appendChild(el("div", { class: "hint", style: "margin-bottom: 10px;" },
-    "Each row is one journey — name, owning department, channel, audience, cadence, and current status. Shows as a table in the wide marketing card."));
+    "Each row is one journey — name, owning department, channel, audience, cadence, go-live date, and current status. Shows as a table in the wide marketing card."));
 
   const listWrap = el("div", { class: "journey-editor" });
   function rerender() {
@@ -2505,7 +2961,7 @@ function journeysEditor(deptIdx) {
         dep.journeys = dep.journeys || [];
         dep.journeys.push({
           name: "", department: "Admissions", channel: "Email",
-          audience: "", cadence: "", status: "in-progress",
+          audience: "", cadence: "", goLiveDate: "", status: "in-progress",
         });
         rerender();
       } },
@@ -2524,7 +2980,7 @@ function journeyEditRow(deptIdx, j, i, rerender) {
   // Name (full width)
   row.appendChild(
     el("div", { class: "full" },
-      el("input", { type: "text", placeholder: "Journey name — e.g. Inquire Welcome",
+      el("input", { type: "text", placeholder: "Journey name ??? e.g. Inquire Welcome",
         value: j.name || "",
         oninput: (e) => DRAFT.departments[deptIdx].journeys[i].name = e.target.value })
     )
@@ -2551,7 +3007,7 @@ function journeyEditRow(deptIdx, j, i, rerender) {
   // Audience (full width)
   row.appendChild(
     el("div", { class: "full" },
-      el("input", { type: "text", placeholder: "Audience — e.g. Accepted, not enrolled",
+      el("input", { type: "text", placeholder: "Audience ??? e.g. Accepted, not enrolled",
         value: j.audience || "",
         oninput: (e) => DRAFT.departments[deptIdx].journeys[i].audience = e.target.value })
     )
@@ -2560,10 +3016,17 @@ function journeyEditRow(deptIdx, j, i, rerender) {
   // Cadence (full width)
   row.appendChild(
     el("div", { class: "full" },
-      el("input", { type: "text", placeholder: "Cadence — e.g. Weekly Tuesdays 10 AM",
+      el("input", { type: "text", placeholder: "Cadence ??? e.g. Weekly Tuesdays 10 AM",
         value: j.cadence || "",
         oninput: (e) => DRAFT.departments[deptIdx].journeys[i].cadence = e.target.value })
     )
+  );
+
+  // Go-live date
+  row.appendChild(
+    el("input", { type: "date",
+      value: (j.goLiveDate || "").slice(0, 10),
+      oninput: (e) => DRAFT.departments[deptIdx].journeys[i].goLiveDate = e.target.value })
   );
 
   // Status
@@ -2580,7 +3043,7 @@ function journeyEditRow(deptIdx, j, i, rerender) {
   row.appendChild(
     el("button", { class: "remove-btn",
       onclick: () => { DRAFT.departments[deptIdx].journeys.splice(i, 1); rerender(); } },
-      el("span", { html: `<i data-lucide="trash-2"></i>` }),
+      el("span", { html: '<i data-lucide="trash-2"></i>' }),
       "Remove"
     )
   );
@@ -2628,11 +3091,16 @@ function flashSaved() {
 
 document.getElementById("btn-save").addEventListener("click", () => {
   STATE = clone(DRAFT);
+  saveLocalPreviewState(STATE);
   render();
   flashSaved();
 });
 document.getElementById("btn-reset").addEventListener("click", () => {
-  if (!confirm("Reload from crm-d365-status.json and discard current on-screen edits?")) return;
+  const msg = IS_LOCAL_PREVIEW
+    ? "Reset local preview to default seed data and discard current on-screen edits?"
+    : "Reload from crm-d365-status.json and discard current on-screen edits?";
+  if (!confirm(msg)) return;
+  if (IS_LOCAL_PREVIEW) clearLocalPreviewState();
   loadState().then((fresh) => {
     STATE = fresh;
     renderDrawer();
@@ -2660,6 +3128,7 @@ document.getElementById("import-file").addEventListener("change", (e) => {
     try {
       const parsed = JSON.parse(r.result);
       STATE = mergeSeed(parsed);
+      saveLocalPreviewState(STATE);
       renderDrawer();
       render();
       flashSaved();
@@ -2678,6 +3147,23 @@ document.addEventListener("keydown", (e) => {
 
 // Initial render
 async function init() {
+  // Mode-specific UI copy helps avoid accidental publish confusion.
+  const drawerMeta = document.querySelector(".drawer-head .meta");
+  const saveBtnLabel = document.querySelector("#btn-save");
+  const resetBtnLabel = document.querySelector("#btn-reset");
+  const modeFootnote = document.getElementById("mode-footnote");
+  if (IS_LOCAL_PREVIEW) {
+    if (drawerMeta) drawerMeta.innerHTML = "Local preview mode: <strong>Apply edits</strong> saves to this browser only. <strong>Export</strong> creates the JSON to publish.";
+    if (saveBtnLabel) saveBtnLabel.lastChild.textContent = " Apply edits";
+    if (resetBtnLabel) resetBtnLabel.textContent = "Reset preview";
+    if (modeFootnote) modeFootnote.innerHTML = "Local preview mode (file/localhost): using browser draft or fallback seed";
+  } else {
+    if (drawerMeta) drawerMeta.innerHTML = "Hosted mode: dashboard reads <strong>crm-d365-status.json</strong>. <strong>Apply edits</strong> previews on-screen; <strong>Export</strong> updates publish file.";
+    if (saveBtnLabel) saveBtnLabel.lastChild.textContent = " Apply edits";
+    if (resetBtnLabel) resetBtnLabel.textContent = "Reload from JSON";
+    if (modeFootnote) modeFootnote.innerHTML = "Hosted mode reads <strong>crm-d365-status.json</strong> from this folder";
+  }
+
   try {
     STATE = await loadState();
     render();
@@ -2701,3 +3187,4 @@ init();
 
 </body>
 </html>
+
