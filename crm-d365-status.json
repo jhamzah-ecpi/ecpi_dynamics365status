@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-21",
+    "lastUpdated": "July 7, 2026",
     "owner": "Roberts CRM Team",
     "overallHealth": "on-track"
   },
@@ -252,14 +252,6 @@
           "channel": "Email",
           "audience": "No shows for scheduled appointment",
           "cadence": "Student based",
-          "status": "live"
-        },
-        {
-          "name": "Atlanta Inquiry Warming",
-          "department": "Admissions",
-          "channel": "Email",
-          "audience": "Inquires for potential Atlanta students",
-          "cadence": "Inquiry submission",
           "status": "live"
         },
         {
