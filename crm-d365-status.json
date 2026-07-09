@@ -1,0 +1,300 @@
+{
+  "meta": {
+    "lastUpdated": "2026-05-21",
+    "owner": "Roberts CRM Team",
+    "overallHealth": "on-track"
+  },
+  "vision": "One source of truth for communication — from inquiry to alumni. Every team works from the same student record, every decision is informed by the same data, and every interaction is part of one connected communication strategy.",
+  "decisions": [
+    {
+      "title": "Employer Partnership Form",
+      "context": "Email copies need to be verified and approved\nApprove fields that will live on Account and Contact table based on survey and intake",
+      "blocks": [
+        "Career Services and University Partnerships (SkillOps)"
+      ],
+      "owner": "COO + VP",
+      "urgency": "high"
+    },
+    {
+      "title": "Finical Aid Data Visualization",
+      "context": "Approval by the way their data is viewed in the system",
+      "blocks": [
+        "Financial Aid"
+      ],
+      "owner": "Compliance + CFO",
+      "urgency": "medium"
+    },
+    {
+      "title": "New Telephony System",
+      "context": "All departments need new communications platform, looking at Talkdesk - showing text in Dynamics as a url, Mike says admin console not user friendly, re-engaging with DialPad. Should Twillio be an option?",
+      "blocks": [
+        "University"
+      ],
+      "owner": "CTO",
+      "urgency": "high"
+    }
+  ],
+  "departments": [
+    {
+      "id": "admissions",
+      "name": "Admissions",
+      "icon": "user-plus",
+      "adoption": "high",
+      "live": [
+        "Lead capture from all web forms",
+        "Lead assignment workflow",
+        "Nurture Journey",
+        "Entity Insights - Talking points for advisors",
+        "Five9, Cresta, TrueDialog"
+      ],
+      "inProgress": [
+        "Flow enhancements",
+        "Open House enhancements",
+        "Dashboards",
+        "Apten"
+      ],
+      "planned": [
+        "Lead Scoring",
+        "Hiya - Call and Number analysis system ( Call branding)",
+        "De-Duplication (Contact)"
+      ],
+      "issues": [
+        "None"
+      ],
+      "futureVision": "Unknown"
+    },
+    {
+      "id": "career-services",
+      "name": "Career Services",
+      "icon": "briefcase",
+      "adoption": "medium",
+      "live": [
+        "Employer Accounts",
+        "Job Orders",
+        "Placements",
+        "Teams. TrueDialog"
+      ],
+      "inProgress": [
+        "De-Duplication (Accounts)",
+        "Dashboards",
+        "CS Milestones",
+        "Employer Partnership Survey"
+      ],
+      "planned": [
+        "Certification Hub integration",
+        "Document Hub  Integration",
+        "Account Management Page"
+      ],
+      "issues": [
+        "Duplicates, call quality for some"
+      ],
+      "futureVision": "A lifelong career partnership — outcomes tracked at 1, 3, and 5 years out, feeding insights back into the system and run accurate reports of employment across all relationships.\nRun Accreditation Reports for Employers"
+    },
+    {
+      "id": "university-partnerships",
+      "name": "University Partnerships",
+      "icon": "handshake",
+      "adoption": "high",
+      "live": [
+        "Partner Account Records",
+        "Contract Repository (Company and Student)",
+        "Teams TrueDialog"
+      ],
+      "inProgress": [
+        "De-Duplication (Accounts)",
+        "Employer Partnership Survey",
+        "Master Benefit List/ Table refinement",
+        "Account Management Page",
+        "Parent Child Benefit inheritance"
+      ],
+      "planned": [
+        "Nurture Journey"
+      ],
+      "issues": [
+        "None"
+      ],
+      "futureVision": "Unknown"
+    },
+    {
+      "id": "financial-aid",
+      "name": "Financial Aid",
+      "icon": "dollar-sign",
+      "adoption": "low",
+      "live": [
+        "Texting - True Dialog"
+      ],
+      "inProgress": [
+        "Nurture Journey",
+        "Aggregation Limit Disclosure Journey",
+        "Agg limit and C-code Management",
+        "Aid Management",
+        "Departmental Activities"
+      ],
+      "planned": [
+        "Dashboard"
+      ],
+      "issues": [
+        "None"
+      ],
+      "futureVision": "Unknown"
+    },
+    {
+      "id": "academics",
+      "name": "Academics",
+      "icon": "graduation-cap",
+      "adoption": "not-started",
+      "live": [
+        "N/A"
+      ],
+      "inProgress": [
+        "N/A"
+      ],
+      "planned": [
+        "Departmental Activities",
+        "Student Communication"
+      ],
+      "issues": [
+        "None"
+      ],
+      "futureVision": "Unknown"
+    },
+    {
+      "id": "student-success",
+      "name": "Student Success",
+      "icon": "trending-up",
+      "adoption": "low",
+      "live": [
+        "At-risk flags from attendance + grades",
+        "Texting - True Dialog",
+        "Pilot Introduction Journey"
+      ],
+      "inProgress": [
+        "Risk calculation",
+        "Dashboard",
+        "Data Visualization"
+      ],
+      "planned": [
+        "At risk journeys"
+      ],
+      "issues": [
+        "Data Display",
+        "Reporting (Data discovery)"
+      ],
+      "futureVision": "Unknown"
+    },
+    {
+      "id": "marketing-journeys",
+      "name": "Marketing / Journeys",
+      "icon": "megaphone",
+      "adoption": "low",
+      "live": [
+        "Bulk Wizard"
+      ],
+      "inProgress": [
+        "Student Data Visualizes",
+        "Announcements",
+        "Training refinement",
+        "New phone system"
+      ],
+      "planned": [
+        "Segment Management",
+        "Journey/Marketing Calendar",
+        "Booking Appointments"
+      ],
+      "issues": [
+        "N/A"
+      ],
+      "futureVision": "Un-clear",
+      "journeys": [
+        {
+          "name": "New Inquiry/Lead",
+          "department": "Admissions",
+          "channel": "Email",
+          "audience": "New inquiries",
+          "cadence": "Trigger: form submit ",
+          "status": "live"
+        },
+        {
+          "name": "Appointment Scheduled",
+          "department": "Admissions",
+          "channel": "Email + SMS",
+          "audience": "Appointment Set",
+          "cadence": "Trigger: Appointment scheduled",
+          "status": "live"
+        },
+        {
+          "name": "Appointment Reminder",
+          "department": "Admissions",
+          "channel": "Email + SMS",
+          "audience": "Appointment reminder with campus info and time",
+          "cadence": "Student based",
+          "status": "live"
+        },
+        {
+          "name": "Interviewed No Test",
+          "department": "Admissions",
+          "channel": "Email",
+          "audience": "No test taken",
+          "cadence": "Student based",
+          "status": "live"
+        },
+        {
+          "name": "Interviewed Passed Test/ Failed",
+          "department": "Admissions",
+          "channel": "Email",
+          "audience": "Test taken passed or failed",
+          "cadence": "Student status triggered",
+          "status": "live"
+        },
+        {
+          "name": "Appointmnet No show",
+          "department": "Admissions",
+          "channel": "Email",
+          "audience": "No shows for scheduled appointment",
+          "cadence": "Student based",
+          "status": "live"
+        },
+        {
+          "name": "Atlanta Inquiry Warming",
+          "department": "Admissions",
+          "channel": "Email",
+          "audience": "Inquires for potential Atlanta students",
+          "cadence": "Inquiry submission",
+          "status": "live"
+        },
+        {
+          "name": "New Enrollment - Welcome to ECPI ",
+          "department": "Admissions",
+          "channel": "Email",
+          "audience": "Student enrolled",
+          "cadence": "Enrollment created",
+          "status": "live"
+        },
+        {
+          "name": "FA Nurture",
+          "department": "Financial Aid",
+          "channel": "Email + SMS",
+          "audience": "New enrollments",
+          "cadence": "Interview complete student status = Candidate",
+          "status": "in-progress"
+        },
+        {
+          "name": "Aggregation Limit Disclosure",
+          "department": "Financial Aid",
+          "channel": "Email",
+          "audience": "Agg limit reached",
+          "cadence": "Student based",
+          "status": "in-progress"
+        },
+        {
+          "name": "SSC Nurture",
+          "department": "Student Success",
+          "channel": "Email",
+          "audience": "First term Active Status",
+          "cadence": "Week 1 - anytime",
+          "status": "live"
+        }
+      ]
+    }
+  ]
+}
