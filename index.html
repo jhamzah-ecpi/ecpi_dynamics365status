@@ -1390,6 +1390,12 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   .roi-kpi.allata { background: linear-gradient(180deg, #F4F1FF 0%, #ECE6FF 100%); border-color: #CBBEFF; }
   .roi-kpi.allata .v { color: #5A3FB4; }
   .roi-list { padding: var(--space-5) var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .roi-departments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+  }
   .roi-table {
     width: 100%; border-collapse: collapse; background: white;
     border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
@@ -2044,6 +2050,9 @@ function normalizeTagArray(tags) {
   });
   return out;
 }
+function roiDepartmentTags(item) {
+  return normalizeTagArray(String(item?.department || "").split(/[,;\n]+/));
+}
 function inferImpactAudience(item) {
   const direct = String(item?.impactAudience || "").toLowerCase();
   if (direct === "students" || direct === "staff" || direct === "both") return direct;
@@ -2133,6 +2142,8 @@ function el(tag, attrs = {}, ...children) {
   for (const k in attrs) {
     if (k === "class") e.className = attrs[k];
     else if (k === "html") e.innerHTML = attrs[k];
+    else if (k === "value") e.value = attrs[k];
+    else if (k === "checked") e.checked = Boolean(attrs[k]);
     else if (k.startsWith("on")) e.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
     else if (attrs[k] !== false && attrs[k] != null) e.setAttribute(k, attrs[k]);
   }
@@ -2423,11 +2434,29 @@ function renderROIInto(c) {
   if (!items.length) {
     list.appendChild(el("div", { class: "roi-empty" }, "No ROI entries yet. Add them via Update status → ROI & impact."));
   } else {
+    const departmentOptions = [...new Set(items.flatMap((r) => roiDepartmentTags(r)))].sort((a, b) => a.localeCompare(b));
+    let roiDepartmentFilter = "";
+    if (departmentOptions.length) {
+      const filters = el("div", { class: "journeys-filters" },
+        el("select", {
+          class: "filter-select",
+          onchange: (e) => {
+            roiDepartmentFilter = e.target.value;
+            applyRoiDepartmentFilter();
+          }
+        },
+          el("option", { value: "" }, "All departments"),
+          ...departmentOptions.map((dept) => el("option", { value: dept }, dept))
+        )
+      );
+      list.appendChild(filters);
+    }
     const table = el("table", { class: "roi-table" });
     table.appendChild(
       el("thead", {},
         el("tr", {},
           el("th", {}, "Feature"),
+          el("th", {}, "Departments"),
           el("th", {}, "Impact summary"),
           el("th", {}, "Key callouts"),
           el("th", {}, "Go-live")
@@ -2437,11 +2466,17 @@ function renderROIInto(c) {
     const tbody = el("tbody");
     items.forEach((r) => {
       const callouts = Array.isArray(r.callouts) ? r.callouts : [];
+      const departments = roiDepartmentTags(r);
       tbody.appendChild(
-        el("tr", {},
+        el("tr", { "data-departments": departments.join("|").toLowerCase() },
           el("td", { class: "feature" },
             r.feature || "Untitled",
             r.allata ? el("span", { class: "tag allata" }, "Allata") : null
+          ),
+          el("td", { "data-label": "Departments" },
+            departments.length
+              ? el("div", { class: "roi-departments" }, departments.map((dept) => el("span", { class: "tag" }, dept)))
+              : el("span", { style: "color: var(--fg-4)" }, "—")
           ),
           el("td", { class: "impact" }, r.impact || "—"),
           el("td", { class: "callouts" }, callouts.length ? callouts.map(c => el("div", { class: "callout" }, c)) : el("div", { style: "color: var(--fg-4)" }, "—")),
@@ -2451,6 +2486,14 @@ function renderROIInto(c) {
     });
     table.appendChild(tbody);
     list.appendChild(table);
+
+    function applyRoiDepartmentFilter() {
+      const rows = tbody.querySelectorAll("tr");
+      rows.forEach((row) => {
+        const departments = row.getAttribute("data-departments") || "";
+        row.style.display = !roiDepartmentFilter || departments.split("|").includes(roiDepartmentFilter.toLowerCase()) ? "" : "none";
+      });
+    }
   }
   c.appendChild(list);
 }
