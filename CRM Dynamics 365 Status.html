@@ -1168,7 +1168,7 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   }
   .journeys-section-head {
     display: flex; align-items: baseline; justify-content: space-between;
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
     gap: var(--space-4); flex-wrap: wrap;
   }
   .journeys-section-title {
@@ -1187,6 +1187,19 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   .journeys-counts .item { display: flex; align-items: center; gap: 6px; }
   .journeys-counts .num { color: var(--fg-1); font-family: var(--font-display); font-size: var(--fs-md); }
   .journeys-counts .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .journeys-filters {
+    display: flex; gap: var(--space-3); margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+  }
+  .filter-select {
+    padding: 8px 12px; border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm); background: white;
+    font-size: var(--fs-sm); color: var(--fg-1);
+    cursor: pointer; font-family: inherit;
+    transition: border-color var(--duration-fast) var(--ease-standard);
+  }
+  .filter-select:hover { border-color: var(--border); }
+  .filter-select:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 2px var(--blue-30); }
 
   .journeys-table {
     width: 100%;
@@ -1292,8 +1305,10 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   .platform-col.live .dot     { background: var(--success-500); }
   .platform-col.progress .dot { background: var(--warning-500); }
   .platform-col.planned .dot  { background: var(--error-500); }
-  .platform-col .items { font-size: var(--fs-sm); color: var(--fg-2); line-height: 1.5; }
-  .platform-col .items span + span::before { content: " · "; color: var(--fg-4); }
+  .platform-col .items { font-size: var(--fs-sm); color: var(--fg-2); line-height: 1.6; }
+  .platform-col .items ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .platform-col .items li { display: flex; gap: 8px; align-items: flex-start; }
+  .platform-col .items li::before { content: "\2022"; color: var(--fg-3); font-weight: 700; flex-shrink: 0; }
 
   /* ----- ROI section ----- */
   .roi-band {
@@ -1324,6 +1339,75 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   .roi-kpi .k { font-size: var(--fs-xs); color: var(--fg-3); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-weight: 700; }
   .roi-kpi .v { font-family: var(--font-display); color: var(--fg-1); font-size: var(--fs-xl); font-weight: 800; }
   .roi-list { padding: var(--space-5) var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .roi-table {
+    width: 100%; border-collapse: collapse; background: white;
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+  }
+  .roi-table thead th {
+    text-align: left; font-size: var(--fs-xs); font-weight: 800;
+    text-transform: uppercase; letter-spacing: var(--tracking-wide);
+    color: var(--fg-3); padding: 14px 16px;
+    border-bottom: 2px solid var(--neutral-100);
+    background: var(--neutral-50);
+  }
+  .roi-table tbody td {
+    padding: 16px; border-bottom: 1px solid var(--border-subtle);
+    color: var(--fg-1); font-size: var(--fs-sm); vertical-align: top;
+  }
+  .roi-table tbody tr:last-child td { border-bottom: 0; }
+  .roi-table tbody tr:hover td { background: var(--neutral-50); }
+  .roi-table tbody tr:nth-child(odd) { background: #FAFBFF; }
+  .roi-table tbody tr:nth-child(odd):hover { background: var(--neutral-50); }
+  .roi-table .feature {
+    font-weight: 800; font-size: var(--fs-md); color: var(--blue-900);
+    padding-left: 12px; position: relative;
+  }
+  .roi-table .feature::before {
+    content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 4px; height: 24px; border-radius: 2px; background: var(--blue-500);
+  }
+  .roi-table .impact {
+    font-size: var(--fs-sm); line-height: 1.6; color: var(--fg-2);
+    max-width: 400px;
+  }
+  .roi-table .callouts {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .roi-table .callout {
+    display: flex; gap: 8px; align-items: flex-start; font-size: var(--fs-sm);
+  }
+  .roi-table .callout::before {
+    content: "•"; font-weight: 700; color: var(--blue-500); flex-shrink: 0;
+  }
+  .roi-table .go-live {
+    font-weight: 600; color: var(--fg-1); white-space: nowrap;
+    padding: 6px 12px; border-radius: var(--radius-sm);
+    background: var(--success-50); color: var(--success-700);
+  }
+  .roi-table .audience {
+    display: inline-block; padding: 4px 10px; border-radius: var(--radius-sm);
+    background: var(--blue-30); color: var(--blue-700); font-size: 11px; font-weight: 700;
+  }
+  .roi-table .tag {
+    display: inline-block; background: var(--neutral-100); color: var(--fg-2);
+    padding: 3px 8px; border-radius: var(--radius-sm); font-size: 11px; font-weight: 600;
+    margin-right: 4px;
+  }
+  .journey-filters {
+    padding: var(--space-4) 0 var(--space-3) 0;
+    display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;
+  }
+  .journey-filters label {
+    font-size: var(--fs-xs); color: var(--fg-3); font-weight: 700;
+    text-transform: uppercase; letter-spacing: var(--tracking-wide);
+  }
+  .journey-filters select {
+    font-family: var(--font-body); font-size: var(--fs-sm);
+    padding: 6px 10px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: white;
+    color: var(--fg-1); cursor: pointer;
+  }
+  .journey-filters .filter-group { display: flex; gap: var(--space-2); align-items: center; }
   .roi-item {
     border: 1px solid var(--border-subtle);
     border-left: 4px solid var(--blue-300);
@@ -1894,12 +1978,32 @@ let ACTIVE_PUBLISHED_STATE_URL_FROM = "fixed-file";
 let STATE_LOAD_ERROR = null;
 
 async function loadPublishedState() {
-  const res = await fetch(DEFAULT_PUBLISHED_STATE_URL, { cache: "no-store" });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const parsed = await res.json();
-  ACTIVE_PUBLISHED_STATE_URL = DEFAULT_PUBLISHED_STATE_URL;
-  ACTIVE_PUBLISHED_STATE_URL_FROM = "fixed-file";
-  return mergeSeed(parsed);
+  try {
+    const res = await fetch(DEFAULT_PUBLISHED_STATE_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const parsed = await res.json();
+    ACTIVE_PUBLISHED_STATE_URL = DEFAULT_PUBLISHED_STATE_URL;
+    ACTIVE_PUBLISHED_STATE_URL_FROM = "fixed-file";
+    return mergeSeed(parsed);
+  } catch (err) {
+    // Fallback: check localStorage for user-saved state
+    const saved = localStorage.getItem(LOCAL_PREVIEW_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        ACTIVE_PUBLISHED_STATE_URL = "localStorage";
+        ACTIVE_PUBLISHED_STATE_URL_FROM = "local-save";
+        return parsed;
+      } catch (e) {
+        // JSON parse failed, fall through to seed
+      }
+    }
+    // Last resort: use seed
+    console.warn("Could not load published JSON, using seed defaults.", err);
+    ACTIVE_PUBLISHED_STATE_URL = "seed (defaults)";
+    ACTIVE_PUBLISHED_STATE_URL_FROM = "seed";
+    return clone(SEED);
+  }
 }
 async function loadState() {
   STATE_LOAD_ERROR = null;
@@ -2234,7 +2338,7 @@ function renderROI() {
     el("div", { class: "roi-head" },
       el("div", {},
         el("h2", { class: "roi-title" }, "ROI & Delivered Impact"),
-        el("div", { class: "roi-sub" }, "Executive view of delivered value, go-live dates, and adoption progress year-over-year.")
+        el("div", { class: "roi-sub" }, "Executive view of delivered value, key callouts, and go-live timeline.")
       ),
       el("div", { class: "roi-kpis" },
         roiKpi("Student impact", studentImpact),
@@ -2249,19 +2353,31 @@ function renderROI() {
   if (!items.length) {
     list.appendChild(el("div", { class: "roi-empty" }, "No ROI entries yet. Add them via Update status → ROI & impact."));
   } else {
+    const table = el("table", { class: "roi-table" });
+    table.appendChild(
+      el("thead", {},
+        el("tr", {},
+          el("th", {}, "Feature"),
+          el("th", {}, "Impact summary"),
+          el("th", {}, "Key callouts"),
+          el("th", {}, "Go-live")
+        )
+      )
+    );
+    const tbody = el("tbody");
     items.forEach((r) => {
-      list.appendChild(
-        el("div", { class: "roi-item" },
-          el("div", { class: "top" },
-            el("div", { class: "feature" }, r.feature || "Untitled feature"),
-            el("div", { class: "meta" },
-              `${r.department || "Department TBD"} · ${inferImpactAudience(r).toUpperCase()} · Go-live: ${fmtDate((r.goLiveDate || "").slice(0, 10))}`
-            )
-          ),
-          el("div", { class: "impact" }, r.impact || "No impact summary provided yet.")
+      const callouts = Array.isArray(r.callouts) ? r.callouts : [];
+      tbody.appendChild(
+        el("tr", {},
+          el("td", { class: "feature" }, r.feature || "Untitled"),
+          el("td", { class: "impact" }, r.impact || "—"),
+          el("td", { class: "callouts" }, callouts.length ? callouts.map(c => el("div", { class: "callout" }, c)) : el("div", { style: "color: var(--fg-4)" }, "—")),
+          el("td", { class: "go-live" }, fmtDate((r.goLiveDate || "").slice(0, 10)) || "TBD")
         )
       );
     });
+    table.appendChild(tbody);
+    list.appendChild(table);
   }
   c.appendChild(list);
 }
@@ -2333,6 +2449,25 @@ function renderPlatformUpdates() {
       platformCol("planned", "Planned", platform.planned || [])
     )
   );
+}
+
+function filterJourneys() {
+  const deptFilter = document.getElementById("filter-dept")?.value || "";
+  const channelFilter = document.getElementById("filter-channel")?.value || "";
+  const statusFilter = document.getElementById("filter-status")?.value || "";
+  
+  const rows = document.querySelectorAll(".journeys-table tbody tr");
+  rows.forEach(row => {
+    const dept = row.querySelector(".dept-chip")?.textContent.trim() || "";
+    const channel = row.querySelector(".channel-pill")?.textContent.trim() || "";
+    const status = row.querySelector(".status-tag")?.className.split(" ")[1] || "";
+    
+    const deptMatch = !deptFilter || dept.includes(deptFilter);
+    const channelMatch = !channelFilter || channel.includes(channelFilter);
+    const statusMatch = !statusFilter || status === statusFilter;
+    
+    row.style.display = (deptMatch && channelMatch && statusMatch) ? "" : "none";
+  });
 }
 
 function deptCardWide(d) {
@@ -2408,6 +2543,29 @@ function deptCardWide(d) {
           el("span", { class: "item" }, el("span", { class: "dot", style: "background: var(--blue-300)" }), el("span", { class: "num" }, String(plCount)), "planned")
         )
       ),
+      el("div", { class: "journeys-filters" },
+        el("select", { class: "filter-select", id: "filter-dept",
+          onchange: (e) => filterJourneys() },
+          el("option", { value: "" }, "All departments"),
+          ...new Set(sorted.map(j => j.department).filter(Boolean)).sort().map(dept =>
+            el("option", { value: dept }, dept)
+          )
+        ),
+        el("select", { class: "filter-select", id: "filter-channel",
+          onchange: (e) => filterJourneys() },
+          el("option", { value: "" }, "All channels"),
+          ...new Set(sorted.map(j => j.channel).filter(Boolean)).sort().map(ch =>
+            el("option", { value: ch }, ch)
+          )
+        ),
+        el("select", { class: "filter-select", id: "filter-status",
+          onchange: (e) => filterJourneys() },
+          el("option", { value: "" }, "All statuses"),
+          el("option", { value: "live" }, "Live"),
+          el("option", { value: "in-progress" }, "In progress"),
+          el("option", { value: "planned" }, "Planned")
+        )
+      ),
       el("table", { class: "journeys-table" },
         el("thead", {},
           el("tr", {},
@@ -2453,7 +2611,9 @@ function platformCol(kind, label, items) {
     ),
     el("div", { class: "items" },
       items && items.length
-        ? items.map(i => el("span", {}, i))
+        ? el("ul", { class: "platform-items-list" },
+            items.map(i => el("li", {}, i))
+          )
         : el("span", { style: "color: var(--fg-4); font-style: italic" }, "Nothing here yet")
     )
   );
@@ -2829,8 +2989,28 @@ function roiEditRow(item, idx, rerender) {
   row.appendChild(
     el("textarea", {
       placeholder: "Impact statement — measurable organizational value",
+      rows: 3,
       oninput: (e) => DRAFT.roi.items[idx].impact = e.target.value
     }, item.impact || "")
+  );
+
+  row.appendChild(
+    field("Key callouts",
+      el("div", { class: "callouts-editor" },
+        el("div", { class: "hint", style: "margin-bottom: 8px; font-size: var(--fs-xs); color: var(--fg-3)" },
+          "One callout per line. These appear as bullet points in the table."),
+        el("textarea", {
+          placeholder: "Reduced manual entry by 60%\nZero compliance gaps\nImproved user adoption by 40%",
+          rows: 3,
+          oninput: (e) => {
+            DRAFT.roi.items[idx].callouts = e.target.value
+              .split("\n")
+              .map(line => line.trim())
+              .filter(line => line.length > 0);
+          },
+          value: (Array.isArray(item.callouts) ? item.callouts.join("\n") : "")
+        })
+      ))
   );
 
   row.appendChild(
