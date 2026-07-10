@@ -1015,10 +1015,36 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     width: 100%; box-sizing: border-box;
     resize: vertical;
   }
+  .field input[type="date"], .field select {
+    font-family: var(--font-body); font-size: var(--fs-sm);
+    padding: 10px 12px; border-radius: var(--radius-md);
+    border: 1px solid var(--border); background: white;
+    color: var(--fg-1);
+    line-height: 1.45;
+    transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+    width: 100%; box-sizing: border-box;
+  }
   .field textarea { min-height: 70px; font-family: var(--font-body); }
+  .field input[type="date"]:focus, .field select:focus {
+    outline: none; border-color: var(--blue-300);
+    box-shadow: var(--shadow-focus);
+  }
   .field input:focus, .field textarea:focus {
     outline: none; border-color: var(--blue-300);
     box-shadow: var(--shadow-focus);
+  }
+  .checkbox-row {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 12px; border-radius: var(--radius-md);
+    border: 1px solid var(--border); background: white;
+    color: var(--fg-1); font-size: var(--fs-sm); font-weight: 600;
+    width: fit-content;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .checkbox-row input {
+    width: 16px; height: 16px; accent-color: var(--blue-500);
+    margin: 0;
   }
 
   .radio-row { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -1361,6 +1387,8 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
   .roi-kpi.pending .v { color: var(--warning-700); }
   .roi-kpi.not-started { background: linear-gradient(180deg, #F6F8FB 0%, #E7EDF4 100%); border-color: #CAD6E3; }
   .roi-kpi.not-started .v { color: var(--neutral-700); }
+  .roi-kpi.allata { background: linear-gradient(180deg, #F4F1FF 0%, #ECE6FF 100%); border-color: #CBBEFF; }
+  .roi-kpi.allata .v { color: #5A3FB4; }
   .roi-list { padding: var(--space-5) var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
   .roi-table {
     width: 100%; border-collapse: collapse; background: white;
@@ -1416,6 +1444,11 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     padding: 3px 8px; border-radius: var(--radius-sm); font-size: var(--fs-xs); font-weight: 600;
     margin-right: 4px;
   }
+  .roi-table .tag.allata {
+    background: #EEE8FF;
+    color: #5A3FB4;
+    border: 1px solid #D5C7FF;
+  }
   .roi-empty { padding: var(--space-6); color: var(--fg-3); font-style: italic; }
 
   /* ----- Platform section (separate from journeys) ----- */
@@ -1432,6 +1465,13 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     padding: var(--space-5) var(--space-6);
     border-bottom: 1px solid var(--border-subtle);
     background: linear-gradient(135deg, #F8FBFF 0%, #FFFFFF 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    text-align: left;
   }
   .platform-band .title {
     margin: 0;
@@ -1441,6 +1481,13 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     font-weight: 700;
   }
   .platform-band .sub { color: var(--fg-3); font-size: var(--fs-xs); margin-top: 3px; }
+  .platform-kpis {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
   .platform-band .platform-strip { border-top: 0; }
 
   /* Responsive: stack journey rows as cards */
@@ -2023,6 +2070,7 @@ function mergeState(base, patch) {
       items: Array.isArray(patch.roi.items)
         ? patch.roi.items.map((item) => ({
             ...item,
+            allata: Boolean(item?.allata),
             impactAudience: inferImpactAudience(item),
             tags: normalizeTagArray(item?.tags || (item?.audienceType ? [item.audienceType] : [])),
           }))
@@ -2256,7 +2304,7 @@ function renderMainContent() {
   if (!mainArea) throw new Error("Dashboard content container is missing.");
   mainArea.innerHTML = "";
 
-  const decisions = createCollapsibleSection("decisions", "Decisions needed from leadership");
+  const decisions = createCollapsibleSection("decisions", "Decisions Needed From Leadership");
   decisions.content.classList.add("decisions-band");
   mainArea.appendChild(decisions.section);
   renderDecisionsInto(decisions.content);
@@ -2266,15 +2314,15 @@ function renderMainContent() {
   mainArea.appendChild(roi.section);
   renderROIInto(roi.content);
 
-  const platform = createCollapsibleSection("platform", "Platform updates", { defaultOpen: false });
+  const platform = createCollapsibleSection("platform", "Platform Updates", { defaultOpen: false });
   mainArea.appendChild(platform.section);
   renderPlatformUpdatesInto(platform.content);
 
-  const departments = createCollapsibleSection("status", "Status by department", { defaultOpen: false });
+  const departments = createCollapsibleSection("status", "Status By Department", { defaultOpen: false });
   mainArea.appendChild(departments.section);
   renderDepartmentsInto(departments.content);
 
-  const journeys = createCollapsibleSection("marketing-journeys", "Marketing journeys", {
+  const journeys = createCollapsibleSection("marketing-journeys", "Marketing Journeys", {
     defaultOpen: false,
     contentStyle: "margin-top: var(--space-3);",
   });
@@ -2294,7 +2342,7 @@ function renderDecisionsInto(c) {
         ),
         el("div", {},
           el("div", { class: "decisions-eyebrow" }, "Needs your input"),
-          el("h2", { class: "decisions-title" }, "Decisions needed from leadership to move forward")
+          el("h2", { class: "decisions-title" }, "Decisions Needed From Leadership To Move Forward")
         )
       ),
       el("div", { class: "decisions-count-pill" },
@@ -2347,6 +2395,7 @@ function renderROIInto(c) {
 
   const roi = STATE.roi || { onboardedLastYear: 0, items: [] };
   const items = Array.isArray(roi.items) ? roi.items : [];
+  const today = new Date().toISOString().slice(0, 10);
   const studentImpact = items.filter(i => {
     const v = inferImpactAudience(i);
     return v === "students" || v === "both";
@@ -2355,19 +2404,17 @@ function renderROIInto(c) {
     const v = inferImpactAudience(i);
     return v === "staff" || v === "both";
   }).length;
-  const departmentsLive = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "live").length;
-  const departmentsPending = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "pending").length;
-  const departmentsNotStarted = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "not-started").length;
-  const departmentTotal = STATE.departments.length;
-
+  const allataCompleted = items.filter(i =>
+    Boolean(i?.allata) &&
+    String(i?.goLiveDate || "").slice(0, 10) &&
+    String(i.goLiveDate).slice(0, 10) <= today
+  ).length;
   c.appendChild(
     el("div", { class: "roi-head", style: "background: white; border-bottom: 1px solid var(--border-subtle); padding: var(--space-5) var(--space-6);" },
       el("div", { class: "roi-kpis" },
         roiKpi("Student-facing initiatives", studentImpact, "students"),
         roiKpi("Staff-facing initiatives", staffImpact, "staff"),
-        roiKpi("Departments live", `${departmentsLive} of ${departmentTotal}`, "live"),
-        roiKpi("Pending", departmentsPending, "pending"),
-        roiKpi("Not started", departmentsNotStarted, "not-started")
+        roiKpi("Allata projects completed", allataCompleted, "allata")
       )
     )
   );
@@ -2392,7 +2439,10 @@ function renderROIInto(c) {
       const callouts = Array.isArray(r.callouts) ? r.callouts : [];
       tbody.appendChild(
         el("tr", {},
-          el("td", { class: "feature" }, r.feature || "Untitled"),
+          el("td", { class: "feature" },
+            r.feature || "Untitled",
+            r.allata ? el("span", { class: "tag allata" }, "Allata") : null
+          ),
           el("td", { class: "impact" }, r.impact || "—"),
           el("td", { class: "callouts" }, callouts.length ? callouts.map(c => el("div", { class: "callout" }, c)) : el("div", { style: "color: var(--fg-4)" }, "—")),
           el("td", { class: "go-live" }, fmtDate((r.goLiveDate || "").slice(0, 10)) || "TBD")
@@ -2474,6 +2524,10 @@ function renderPlatformUpdatesInto(c) {
   c.innerHTML = "";
 
   const marketing = STATE.departments.find(d => d.id === "marketing-journeys") || {};
+  const departmentsLive = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "live").length;
+  const departmentsPending = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "pending").length;
+  const departmentsNotStarted = STATE.departments.filter(d => inferRolloutStatusFromDept(d) === "not-started").length;
+  const departmentTotal = STATE.departments.length;
   let platform = STATE.platform || { live: [], inProgress: [], planned: [] };
   const isEmpty =
     (!platform.live || !platform.live.length) &&
@@ -2492,13 +2546,18 @@ function renderPlatformUpdatesInto(c) {
     el("div", { class: "head" },
       el("div", {},
         el("div", { class: "title" }, "System Wide Development")
+      ),
+      el("div", { class: "platform-kpis" },
+        roiKpi("Departments Live", `${departmentsLive} of ${departmentTotal}`, "live"),
+        roiKpi("Departments Pending", departmentsPending, "pending"),
+        roiKpi("Departments Not Started", departmentsNotStarted, "not-started")
       )
     )
   );
   band.appendChild(
     el("div", { class: "platform-strip" },
-      platformCol("live", "Platform — live", platform.live || []),
-      platformCol("progress", "In progress", platform.inProgress || []),
+      platformCol("live", "Platform — Live", platform.live || []),
+      platformCol("progress", "In Progress", platform.inProgress || []),
       platformCol("planned", "Planned", platform.planned || [])
     )
   );
@@ -2962,6 +3021,7 @@ function roiEditor() {
       DRAFT.roi.items.push({
           feature: "",
           department: "",
+          allata: false,
           impactAudience: "both",
           goLiveDate: "",
           impact: "",
@@ -3001,6 +3061,7 @@ function platformEditor() {
 
 function roiEditRow(item, idx, rerender) {
   DRAFT.roi.items[idx].impactAudience = inferImpactAudience(DRAFT.roi.items[idx]);
+  DRAFT.roi.items[idx].allata = Boolean(DRAFT.roi.items[idx].allata);
   const row = el("div", { class: "decision-edit-row" });
   row.appendChild(
     el("input", {
@@ -3039,6 +3100,19 @@ function roiEditRow(item, idx, rerender) {
       "Used for Student impact and Staff impact KPI totals. 'Both' counts in both tiles.")
   );
   row.appendChild(twoCol);
+
+  row.appendChild(
+    field("Consulting partner",
+      el("label", { class: "checkbox-row" },
+        el("input", {
+          type: "checkbox",
+          ...(DRAFT.roi.items[idx].allata ? { checked: "checked" } : {}),
+          onchange: (e) => DRAFT.roi.items[idx].allata = e.target.checked
+        }),
+        el("span", {}, "Allata")
+      ),
+      "Check this when Allata completed or delivered this ROI project.")
+  );
 
   row.appendChild(
     el("textarea", {
