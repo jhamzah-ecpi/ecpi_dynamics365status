@@ -36,7 +36,8 @@
           "Increases application completion rates",
           "Ensures every prospect receives the same quality experience",
           "Provides reporting on communication effectiveness"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Placement Review/Approval Process",
@@ -51,7 +52,8 @@
           "Reduces processing time",
           "Provides complete audit history",
           "Improves communication between Career Services staff"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Account Management Page",
@@ -66,7 +68,8 @@
           "Better visibility into engagement history",
           "Increased staff efficiency",
           "Reduced training for new employees"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "SSC Introduction Journey",
@@ -81,7 +84,8 @@
           "Reduced manual outreach",
           "Improved student retention through early engagement",
           "Better tracking of communication effectiveness"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Bulk Wizard",
@@ -96,7 +100,8 @@
           "Supports large enrollment campaigns",
           "Enables rapid operational changes",
           "Increases staff productivity"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Text Distribution for Journeys",
@@ -104,14 +109,15 @@
         "allata": false,
         "impactAudience": "both",
         "goLiveDate": "2025-04-10",
-        "impact": "Expands communication beyond email by incorporating SMS messaging into automated customer journeys, increasing engagement and response rates.",
+        "impact": "Expands communication beyond email by incorporating SMS messaging into automated customer journeys, increasing engagement and response rates since text originating from journey will now go back to their assigned advisor vs a general pool.",
         "callouts": [
           "Higher message open rates than email",
           "Faster response from students",
           "Improved attendance at appointments/events",
           "Reduced missed deadlines",
           "More effective multi-channel communication strategy"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Survey Personalization for Journeys",
@@ -126,7 +132,8 @@
           "Reduced manual survey management",
           "Better data for institutional decision making",
           "Supports continuous service improvement"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "National Do Not Call (DNC) Integration",
@@ -141,7 +148,8 @@
           "Eliminates manual DNC verification",
           "Improves marketing data quality",
           "Saves staff time"
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Apten",
@@ -158,7 +166,8 @@
           "Improve advisor productivity by prioritizing outreach to students most likely to respond.",
           "Increase return on marketing and lead-generation investments by maximizing the value of existing leads.",
           "Support enrollment growth without increasing staffing levels."
-        ]
+        ],
+        "tags": []
       },
       {
         "feature": "Career Services Milestone Process",
@@ -174,6 +183,70 @@
           "Improves visibility into student engagement and career preparation.",
           "Supports earlier intervention for students who have low readiness, incomplete milestones, or limited recent contact.",
           "Improves reporting for leadership and Career Services performance tracking."
+        ],
+        "tags": []
+      },
+      {
+        "feature": "Open House Event Modernization",
+        "department": "Admissions ",
+        "allata": false,
+        "impactAudience": "both",
+        "goLiveDate": "2025-12-12",
+        "impact": " Provides a modern, scalable event management framework that improves the attendee experience today while reducing implementation effort for future event initiatives.",
+        "callouts": [
+          "Simplified the student RSVP experience.",
+          "Improved event check-in efficiency and attendance tracking.",
+          "Reduced manual event management processes.",
+          "Established reusable event infrastructure within Dynamics 365 Marketing.",
+          "Created a scalable foundation for future recruitment, admissions, and student events."
+        ]
+      },
+      {
+        "feature": "Benefit Inheritance",
+        "department": "Business Alliance (UP)",
+        "allata": true,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-05-20",
+        "impact": "Automates benefit management for complex account structures, saving administrative time while improving consistency and scalability.",
+        "callouts": [
+          "Eliminates repetitive benefit assignments across large account hierarchies.",
+          "Reduces manual administration for organizations with dozens of child accounts.",
+          "Preserves user control through configurable inheritance and exception handling.",
+          "Improves consistency of benefit assignments.",
+          "Reduces data maintenance and user error."
+        ]
+      },
+      {
+        "feature": "Dataverse Storage Governance & Attachment Controls",
+        "department": "All",
+        "allata": true,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-04-22",
+        "impact": "Implemented governance controls to prevent excessive Dataverse storage growth by restricting unsupported large email attachments, introducing automated storage remediation, and directing users toward more appropriate communication channels for mass communications. Reduces operational risk and long-term licensing costs by preventing unnecessary Dataverse storage consumption while establishing sustainable governance practices.",
+        "callouts": [
+          "Prevents unexpected Dataverse storage spikes.",
+          "Protects platform performance and stability.",
+          "Reduces storage costs.",
+          "Encourages use of Dynamics 365 Marketing for large communications.",
+          "Introduces proactive governance to prevent future incidents.",
+          "Automates remediation of high-storage email records where appropriate."
+        ]
+      },
+      {
+        "feature": "Dashboard Framework",
+        "department": "All",
+        "allata": false,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-05-06",
+        "impact": "Transforms dashboard development from a custom-build process into a configurable platform, significantly reducing future implementation time while improving consistency, maintainability, and scalability of reporting across the enterprise.",
+        "callouts": [
+          "Eliminates the need to build custom dashboards for each department.",
+          "Enables administrators to configure dashboards through a guided wizard rather than code changes.",
+          "Provides role-based dashboard experiences tailored to business functions.",
+          "Standardizes KPI calculations and reporting across departments.",
+          "Reduces development effort for future dashboard requests.",
+          "Creates a reusable framework that supports continued organizational growth.",
+          "Improves leadership visibility into operational and performance metrics."
         ]
       }
     ]
