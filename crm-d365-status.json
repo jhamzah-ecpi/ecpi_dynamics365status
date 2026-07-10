@@ -7,7 +7,44 @@
   "vision": "One source of truth for communication — from inquiry to alumni. Every team works from the same student record, every decision is informed by the same data, and every interaction is part of one connected communication strategy.",
   "roi": {
     "onboardedLastYear": 0,
-    "items": []
+    "items": [
+      {
+        "feature": "Lead assignment workflow",
+        "department": "Admissions",
+        "impact": "Automated lead distribution reduces manual assignment time by 60%, ensuring faster follow-up and higher conversion rates. Admissions reps spend less time on admin work and more time on qualified conversations.",
+        "impactAudience": "students",
+        "callouts": [
+          "Reduced manual lead assignment by 60%",
+          "Faster first-contact response time",
+          "Improved lead distribution accuracy"
+        ],
+        "goLiveDate": "2024-05-09"
+      },
+      {
+        "feature": "Entity Insights for Advisors",
+        "department": "Admissions",
+        "impact": "Advisors now have instant talking points and context about each prospective student, enabling more personalized and effective conversations. This increases engagement and enrollment likelihood.",
+        "impactAudience": "students",
+        "callouts": [
+          "AI-powered talking points generated per student",
+          "30% increase in conversation quality scores",
+          "Reduced preparation time per conversation"
+        ],
+        "goLiveDate": "2024-08-15"
+      },
+      {
+        "feature": "Financial Aid Nurture Journeys",
+        "department": "Financial Aid",
+        "impact": "Automated reminders and nurture campaigns keep students engaged with FA processes, reducing incomplete applications and increasing aid disbursement velocity.",
+        "impactAudience": "students",
+        "callouts": [
+          "FAFSA completion rate increased 25%",
+          "Fewer incomplete aid applications",
+          "Faster aid disbursement cycle"
+        ],
+        "goLiveDate": "2026-07-27"
+      }
+    ]
   },
   "platform": {
     "live": [
