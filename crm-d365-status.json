@@ -382,7 +382,7 @@
     },
     {
       "id": "university-partnerships",
-      "name": "University Partnerships",
+      "name": "Buisness Alliance (UP)",
       "icon": "handshake",
       "adoption": "high",
       "live": [
@@ -463,7 +463,7 @@
       "id": "student-success",
       "name": "Student Success",
       "icon": "trending-up",
-      "adoption": "medium",
+      "adoption": "low",
       "live": [
         "At-risk flags from attendance + grades",
         "Texting - True Dialog",
