@@ -2065,6 +2065,10 @@ function inferImpactAudience(item) {
   if (hasStaff) return "staff";
   return "both";
 }
+function impactAudienceLabel(item) {
+  const audience = inferImpactAudience(item);
+  return audience === "students" ? "Students" : audience === "staff" ? "Staff" : "Both";
+}
 function mergeState(base, patch) {
   const out = clone(base);
   if (patch?.meta) Object.assign(out.meta, patch.meta);
@@ -2457,6 +2461,7 @@ function renderROIInto(c) {
         el("tr", {},
           el("th", {}, "Feature"),
           el("th", {}, "Departments"),
+          el("th", {}, "Audience"),
           el("th", {}, "Impact summary"),
           el("th", {}, "Key callouts"),
           el("th", {}, "Go-live")
@@ -2477,6 +2482,9 @@ function renderROIInto(c) {
             departments.length
               ? el("div", { class: "roi-departments" }, departments.map((dept) => el("span", { class: "tag" }, dept)))
               : el("span", { style: "color: var(--fg-4)" }, "—")
+          ),
+          el("td", { "data-label": "Audience" },
+            el("span", { class: "audience" }, impactAudienceLabel(r))
           ),
           el("td", { class: "impact" }, r.impact || "—"),
           el("td", { class: "callouts" }, callouts.length ? callouts.map(c => el("div", { class: "callout" }, c)) : el("div", { style: "color: var(--fg-4)" }, "—")),
