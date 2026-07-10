@@ -9,40 +9,172 @@
     "onboardedLastYear": 0,
     "items": [
       {
-        "feature": "Lead assignment workflow",
+        "feature": "Entity Insights",
         "department": "Admissions",
-        "impact": "Automated lead distribution reduces manual assignment time by 60%, ensuring faster follow-up and higher conversion rates. Admissions reps spend less time on admin work and more time on qualified conversations.",
-        "impactAudience": "students",
+        "impact": "Provides users with a consolidated view of important metrics, activities, and related records directly within Dynamics, allowing faster decision making. This increases engagement and enrollment likelihood.",
+        "impactAudience": "staff",
         "callouts": [
-          "Reduced manual lead assignment by 60%",
-          "Faster first-contact response time",
-          "Improved lead distribution accuracy"
+          "Reduces time searching across records",
+          "Improves advisor productivity",
+          "Enables proactive student engagement",
+          "Provides better visibility into key performance indicators"
         ],
-        "goLiveDate": "2024-05-09"
+        "goLiveDate": "2025-08-15",
+        "allata": false,
+        "tags": []
       },
       {
-        "feature": "Entity Insights for Advisors",
+        "feature": "Admissions Nurture Journeys",
         "department": "Admissions",
-        "impact": "Advisors now have instant talking points and context about each prospective student, enabling more personalized and effective conversations. This increases engagement and enrollment likelihood.",
-        "impactAudience": "students",
+        "allata": false,
+        "impactAudience": "staff",
+        "goLiveDate": "2025-11-10",
+        "impact": "Automates personalized communications throughout the admissions process, ensuring prospective students receive timely information without requiring manual outreach from admissions staff.",
         "callouts": [
-          "AI-powered talking points generated per student",
-          "30% increase in conversation quality scores",
-          "Reduced preparation time per conversation"
-        ],
-        "goLiveDate": "2024-08-15"
+          "Reduces manual email workload by 80–90%",
+          "Improves applicant engagement through consistent touchpoints",
+          "Increases application completion rates",
+          "Ensures every prospect receives the same quality experience",
+          "Provides reporting on communication effectiveness"
+        ]
       },
       {
-        "feature": "Financial Aid Nurture Journeys",
-        "department": "Financial Aid",
-        "impact": "Automated reminders and nurture campaigns keep students engaged with FA processes, reducing incomplete applications and increasing aid disbursement velocity.",
-        "impactAudience": "students",
+        "feature": "Placement Review/Approval Process",
+        "department": "Career Services",
+        "allata": false,
+        "impactAudience": "staff",
+        "goLiveDate": "2025-11-10",
+        "impact": "Standardizes placement approvals through automated workflows, ensuring consistent review processes while reducing turnaround time.",
         "callouts": [
-          "FAFSA completion rate increased 25%",
-          "Fewer incomplete aid applications",
-          "Faster aid disbursement cycle"
-        ],
-        "goLiveDate": "2026-07-27"
+          "Eliminates manual approval tracking",
+          "Improves compliance with institutional policies",
+          "Reduces processing time",
+          "Provides complete audit history",
+          "Improves communication between Career Services staff"
+        ]
+      },
+      {
+        "feature": "Account Management Page",
+        "department": "Career Services, Business Alliance (UP)",
+        "allata": false,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-06-16",
+        "impact": "Provides staff with a centralized workspace for employer or organizational account management, reducing navigation between multiple forms and related records.",
+        "callouts": [
+          "Faster account updates",
+          "Improved employer relationship management",
+          "Better visibility into engagement history",
+          "Increased staff efficiency",
+          "Reduced training for new employees"
+        ]
+      },
+      {
+        "feature": "SSC Introduction Journey",
+        "department": "Student Success",
+        "allata": false,
+        "impactAudience": "both",
+        "goLiveDate": "2025-10-10",
+        "impact": "Automatically introduces newly enrolled students to available student success resources, increasing awareness and encouraging early engagement by allowing the student to book time with their advisor",
+        "callouts": [
+          "Consistent onboarding experience",
+          "Increased utilization of support services",
+          "Reduced manual outreach",
+          "Improved student retention through early engagement",
+          "Better tracking of communication effectiveness"
+        ]
+      },
+      {
+        "feature": "Bulk Wizard",
+        "department": "All",
+        "allata": true,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-05-20",
+        "impact": "Allows staff to perform mass updates and communications safely and efficiently, eliminating repetitive record-by-record processing.",
+        "callouts": [
+          "Saves hours of administrative work",
+          "Reduces human error",
+          "Supports large enrollment campaigns",
+          "Enables rapid operational changes",
+          "Increases staff productivity"
+        ]
+      },
+      {
+        "feature": "Text Distribution for Journeys",
+        "department": "All",
+        "allata": false,
+        "impactAudience": "both",
+        "goLiveDate": "2025-04-10",
+        "impact": "Expands communication beyond email by incorporating SMS messaging into automated customer journeys, increasing engagement and response rates.",
+        "callouts": [
+          "Higher message open rates than email",
+          "Faster response from students",
+          "Improved attendance at appointments/events",
+          "Reduced missed deadlines",
+          "More effective multi-channel communication strategy"
+        ]
+      },
+      {
+        "feature": "Survey Personalization for Journeys",
+        "department": "",
+        "allata": true,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-04-10",
+        "impact": "Delivers personalized surveys based on student information and journey stage, improving response quality while enabling actionable feedback.",
+        "callouts": [
+          "Higher survey completion rates",
+          "More meaningful student feedback",
+          "Reduced manual survey management",
+          "Better data for institutional decision making",
+          "Supports continuous service improvement"
+        ]
+      },
+      {
+        "feature": "National Do Not Call (DNC) Integration",
+        "department": "All",
+        "allata": false,
+        "impactAudience": "both",
+        "goLiveDate": "2025-02-10",
+        "impact": "Automatically validates phone numbers against the National Do Not Call Registry before outreach activities, ensuring regulatory compliance and reducing organizational risk.",
+        "callouts": [
+          "Improves compliance",
+          "Reduces legal risk",
+          "Eliminates manual DNC verification",
+          "Improves marketing data quality",
+          "Saves staff time"
+        ]
+      },
+      {
+        "feature": "Apten",
+        "department": "Admissions",
+        "allata": false,
+        "impactAudience": "staff",
+        "goLiveDate": "2026-03-10",
+        "impact": "Improves advisor efficiency by identifying viable leads for re-engagement, reducing time spent contacting unresponsive prospects while increasing recovered enrollment opportunities.",
+        "callouts": [
+          "Recover \"dead\" leads that would have otherwise been lost.",
+          "Convert previously inactive prospects into enrolled students.",
+          "Re-establish communication with qualified prospective students.",
+          "Reduce advisor time spent calling unreachable or unresponsive leads.",
+          "Improve advisor productivity by prioritizing outreach to students most likely to respond.",
+          "Increase return on marketing and lead-generation investments by maximizing the value of existing leads.",
+          "Support enrollment growth without increasing staffing levels."
+        ]
+      },
+      {
+        "feature": "Career Services Milestone Process",
+        "department": "Career Services",
+        "allata": false,
+        "impactAudience": "both",
+        "goLiveDate": "2026-07-01",
+        "impact": "Automates student career readiness, milestone completion, and advisor contact scoring within Dynamics 365. This provides Career Services with a unified view of each student’s progress, engagement level, and need for follow-up, allowing advisors to prioritize outreach and intervene earlier with students who may be falling behind.",
+        "callouts": [
+          "Combines readiness, milestone, and contact activity into one measurable student success framework.",
+          "Reduces manual tracking and score calculation.",
+          "Gives advisors a clear prioritization model for student follow-up.",
+          "Improves visibility into student engagement and career preparation.",
+          "Supports earlier intervention for students who have low readiness, incomplete milestones, or limited recent contact.",
+          "Improves reporting for leadership and Career Services performance tracking."
+        ]
       }
     ]
   },
@@ -137,7 +269,8 @@
       ],
       "futureVision": "The vision for Admissions is a CRM experience where high-volume processes are faster, more intuitive, and more reliable. This includes optimizing heavy Anthology legacy processes, consolidating scattered automations, improving Inbound Interest Forms through HTML rendering, introducing intuitive workload dashboards, and expanding AI-enabled tools like Cresta and Apten to reduce busy work and improve the user and student experience. Optimizing high-volume legacy workflows will not only improve the Admissions user experience, but also strengthen overall system health, performance, and long-term scalability.",
       "rolloutStatus": "live",
-      "goLiveDate": "2024-05-09"
+      "goLiveDate": "2024-05-09",
+      "journeys": []
     },
     {
       "id": "career-services",
@@ -171,7 +304,8 @@
       ],
       "futureVision": "A lifelong career partnership — outcomes tracked at 1, 3, and 5 years out, feeding insights back into the system and run accurate reports of employment across all relationships.\nRun Accreditation Reports for Employers",
       "rolloutStatus": "live",
-      "goLiveDate": "2023-02-14"
+      "goLiveDate": "2023-02-14",
+      "journeys": []
     },
     {
       "id": "university-partnerships",
@@ -201,7 +335,8 @@
       ],
       "futureVision": "Unknown",
       "rolloutStatus": "live",
-      "goLiveDate": "2023-07-13"
+      "goLiveDate": "2023-07-13",
+      "journeys": []
     },
     {
       "id": "financial-aid",
@@ -226,7 +361,8 @@
       ],
       "futureVision": "Unknown",
       "rolloutStatus": "pending",
-      "goLiveDate": "2026-07-27"
+      "goLiveDate": "2026-07-27",
+      "journeys": []
     },
     {
       "id": "academics",
@@ -247,7 +383,8 @@
         "None"
       ],
       "futureVision": "Unknown",
-      "rolloutStatus": "not-started"
+      "rolloutStatus": "not-started",
+      "journeys": []
     },
     {
       "id": "student-success",
@@ -274,7 +411,8 @@
       ],
       "futureVision": "Unknown",
       "rolloutStatus": "pending",
-      "goLiveDate": "2026-08-10"
+      "goLiveDate": "2026-08-10",
+      "journeys": []
     },
     {
       "id": "marketing-journeys",
