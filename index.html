@@ -1204,8 +1204,18 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-8) 0
     cursor: pointer; font-family: inherit;
     transition: border-color var(--duration-fast) var(--ease-standard);
   }
+  .filter-input {
+    padding: 8px 12px; border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm); background: white;
+    font-size: var(--fs-sm); color: var(--fg-1);
+    font-family: inherit;
+    transition: border-color var(--duration-fast) var(--ease-standard);
+  }
   .filter-select:hover { border-color: var(--border); }
   .filter-select:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 2px var(--blue-30); }
+  .filter-input:hover { border-color: var(--border); }
+  .filter-input:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 2px var(--blue-30); }
+  .filter-input:disabled { background: var(--neutral-50); color: var(--fg-4); cursor: not-allowed; }
 
   .journeys-table {
     width: 100%;
@@ -2440,21 +2450,63 @@ function renderROIInto(c) {
   } else {
     const departmentOptions = [...new Set(items.flatMap((r) => roiDepartmentTags(r)))].sort((a, b) => a.localeCompare(b));
     let roiDepartmentFilter = "";
-    if (departmentOptions.length) {
-      const filters = el("div", { class: "journeys-filters" },
-        el("select", {
-          class: "filter-select",
-          onchange: (e) => {
-            roiDepartmentFilter = e.target.value;
-            applyRoiDepartmentFilter();
+    let roiDateMode = "all";
+    let roiDateStart = "";
+    let roiDateEnd = "";
+    const dateStartInput = el("input", {
+      class: "filter-input",
+      type: "date",
+      disabled: "disabled",
+      oninput: (e) => {
+        roiDateStart = e.target.value;
+        applyRoiFilters();
+      }
+    });
+    const dateEndInput = el("input", {
+      class: "filter-input",
+      type: "date",
+      disabled: "disabled",
+      oninput: (e) => {
+        roiDateEnd = e.target.value;
+        applyRoiFilters();
+      }
+    });
+    const filters = el("div", { class: "journeys-filters" },
+      departmentOptions.length
+        ? el("select", {
+            class: "filter-select",
+            onchange: (e) => {
+              roiDepartmentFilter = e.target.value;
+              applyRoiFilters();
+            }
+          },
+            el("option", { value: "" }, "All departments"),
+            ...departmentOptions.map((dept) => el("option", { value: dept }, dept))
+          )
+        : null,
+      el("select", {
+        class: "filter-select",
+        onchange: (e) => {
+          roiDateMode = e.target.value;
+          const between = roiDateMode === "between";
+          dateStartInput.disabled = !between;
+          dateEndInput.disabled = !between;
+          if (!between) {
+            roiDateStart = "";
+            roiDateEnd = "";
+            dateStartInput.value = "";
+            dateEndInput.value = "";
           }
-        },
-          el("option", { value: "" }, "All departments"),
-          ...departmentOptions.map((dept) => el("option", { value: dept }, dept))
-        )
-      );
-      list.appendChild(filters);
-    }
+          applyRoiFilters();
+        }
+      },
+        el("option", { value: "all", selected: "selected" }, "All time"),
+        el("option", { value: "between" }, "Between dates")
+      ),
+      dateStartInput,
+      dateEndInput
+    );
+    list.appendChild(filters);
     const table = el("table", { class: "roi-table" });
     table.appendChild(
       el("thead", {},
@@ -2472,8 +2524,12 @@ function renderROIInto(c) {
     items.forEach((r) => {
       const callouts = Array.isArray(r.callouts) ? r.callouts : [];
       const departments = roiDepartmentTags(r);
+      const goLiveDate = String((r.goLiveDate || "")).slice(0, 10);
       tbody.appendChild(
-        el("tr", { "data-departments": departments.join("|").toLowerCase() },
+        el("tr", {
+          "data-departments": departments.join("|").toLowerCase(),
+          "data-go-live": goLiveDate
+        },
           el("td", { class: "feature" },
             r.feature || "Untitled",
             r.allata ? el("span", { class: "tag allata" }, "Allata") : null
@@ -2495,11 +2551,18 @@ function renderROIInto(c) {
     table.appendChild(tbody);
     list.appendChild(table);
 
-    function applyRoiDepartmentFilter() {
+    function applyRoiFilters() {
       const rows = tbody.querySelectorAll("tr");
       rows.forEach((row) => {
         const departments = row.getAttribute("data-departments") || "";
-        row.style.display = !roiDepartmentFilter || departments.split("|").includes(roiDepartmentFilter.toLowerCase()) ? "" : "none";
+        const goLiveDate = row.getAttribute("data-go-live") || "";
+        const departmentMatch = !roiDepartmentFilter || departments.split("|").includes(roiDepartmentFilter.toLowerCase());
+        const dateMatch = roiDateMode !== "between"
+          ? true
+          : Boolean(goLiveDate) &&
+            (!roiDateStart || goLiveDate >= roiDateStart) &&
+            (!roiDateEnd || goLiveDate <= roiDateEnd);
+        row.style.display = departmentMatch && dateMatch ? "" : "none";
       });
     }
   }
